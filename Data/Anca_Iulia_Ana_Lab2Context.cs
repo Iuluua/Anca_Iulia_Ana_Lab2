@@ -16,5 +16,6 @@ namespace Anca_Iulia_Ana_Lab2.Data
 
         public DbSet<Anca_Iulia_Ana_Lab2.Models.Book> Book { get; set; } = default!;
         public DbSet<Anca_Iulia_Ana_Lab2.Models.Publisher> Publisher { get; set; } = default!;
+        public DbSet<Anca_Iulia_Ana_Lab2.Models.Author> Author { get; set; } = default!;
     }
 }
