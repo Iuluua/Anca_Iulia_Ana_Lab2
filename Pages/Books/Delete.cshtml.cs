@@ -30,6 +30,8 @@ namespace Anca_Iulia_Ana_Lab2.Pages.Books
             }
 
             var book = await _context.Book.FirstOrDefaultAsync(m => m.ID == id);
+            var author = await _context.Author.FirstOrDefaultAsync(a => a.ID == book.AuthorID);
+            var publisher = await _context.Publisher.FirstOrDefaultAsync(a => a.ID == book.PublisherID);
 
             if (book == null)
             {
@@ -38,6 +40,8 @@ namespace Anca_Iulia_Ana_Lab2.Pages.Books
             else
             {
                 Book = book;
+                Book.Author = author;
+                Book.Publisher = publisher;
             }
             return Page();
         }

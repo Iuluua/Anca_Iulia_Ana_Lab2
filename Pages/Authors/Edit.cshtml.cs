@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Anca_Iulia_Ana_Lab2.Data;
 using Anca_Iulia_Ana_Lab2.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Anca_Iulia_Ana_Lab2.Pages.Authors
 {
@@ -43,10 +44,11 @@ namespace Anca_Iulia_Ana_Lab2.Pages.Authors
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            if (!IsFormValid())
             {
                 return Page();
             }
+            this.Author.FullName = this.Author.FirstName + " " + this.Author.LastName;
 
             _context.Attach(Author).State = EntityState.Modified;
 
@@ -72,6 +74,12 @@ namespace Anca_Iulia_Ana_Lab2.Pages.Authors
         private bool AuthorExists(int id)
         {
             return _context.Author.Any(e => e.ID == id);
+        }
+        private bool IsFormValid()
+        {
+            return ModelState["Author.LastName"].ValidationState == ModelValidationState.Valid &&
+                ModelState["Author.FirstName"].ValidationState == ModelValidationState.Valid &&
+                ModelState["Author.FullName"].ValidationState == ModelValidationState.Invalid;
         }
     }
 }
