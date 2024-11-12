@@ -7,11 +7,14 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Anca_Iulia_Ana_Lab2.Data;
 using Anca_Iulia_Ana_Lab2.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Anca_Iulia_Ana_Lab2.Pages.Books
 {
+    [Authorize(Roles = "Admin")]
     public class CreateModel : BookCategoriesPageModel
     {
+
         private readonly Anca_Iulia_Ana_Lab2.Data.Anca_Iulia_Ana_Lab2Context _context;
 
         public CreateModel(Anca_Iulia_Ana_Lab2.Data.Anca_Iulia_Ana_Lab2Context context)
